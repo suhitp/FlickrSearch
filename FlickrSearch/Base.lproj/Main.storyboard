@@ -12,7 +12,7 @@
         <!--Flickr Search View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="FlickrSearchViewController" customModule="FlickrSearch" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="FlickrSearchViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="BYZ-38-t0r" customClass="FlickrSearchViewController" customModule="FlickrSearch" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -26,21 +26,18 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1076" y="137.18140929535232"/>
+            <point key="canvasLocation" x="646" y="-546"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="dYy-C2-N2V">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="B8f-Ng-XMj" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="NavigationController" automaticallyAdjustsScrollViewInsets="NO" id="B8f-Ng-XMj" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="alK-Wh-pSR">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="WzV-aC-sgl"/>
-                    </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YU3-c9-QMl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

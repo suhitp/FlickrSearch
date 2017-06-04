@@ -8,6 +8,6 @@
 
 import UIKit
 
-class FlickrSearchRouter: NSObject {
-
+class FlickrSearchRouter: FlickrSearchWireframe {
+    weak var viewController: FlickrSearchViewController? 
 }

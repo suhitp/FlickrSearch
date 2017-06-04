@@ -8,6 +8,8 @@
 
 import UIKit
 
-class FlickrSearchPresenter {
-
+class FlickrSearchPresenter: FlickrSearchPresentation {
+    weak var view: FlickrSearchView?
+    var interactor: FlickrSearchInteractor!
+    var router: FlickrSearchRouter!
 }

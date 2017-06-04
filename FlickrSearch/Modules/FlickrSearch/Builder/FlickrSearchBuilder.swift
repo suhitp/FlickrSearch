@@ -8,6 +8,35 @@
 
 import UIKit
 
-class FlickrSearchBuilder: NSObject {
+public protocol FlickrSearchModuleBuilder {
+    func buildFlickrSearchModule() -> UIViewController?
+}
+
+final class FlickrSearchBuilder: FlickrSearchModuleBuilder {
+    
+     func buildFlickrSearchModule() -> UIViewController? {
+       
+        let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "FlickrSearchViewController") as? FlickrSearchViewController
+        
+        let presenter = FlickrSearchPresenter()
+        let router = FlickrSearchRouter()
+        let interactor = FlickrSearchInteractor()
+        
+        
+        viewController?.presenter = presenter
+        
+        presenter.view = viewController
+        presenter.router = router
+        presenter.interactor = interactor
+        
+        router.viewController = viewController
+        
+        interactor.output = presenter
+        
+        return viewController
+    }
 
 }
+
+
+

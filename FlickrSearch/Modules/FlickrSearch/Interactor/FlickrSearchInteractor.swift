@@ -8,6 +8,7 @@
 
 import UIKit
 
-class FlickrSearchInteractor: NSObject {
+class FlickrSearchInteractor: FlickrSearchInteractorOutput {
 
+    weak var output: FlickrSearchPresentation?
 }

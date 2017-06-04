@@ -8,6 +8,7 @@
 
 import UIKit
 
-class FlickrSearchViewController: UIViewController {
+class FlickrSearchViewController: UIViewController, FlickrSearchView {
+    var presenter: FlickrSearchPresentation!
 
 }
