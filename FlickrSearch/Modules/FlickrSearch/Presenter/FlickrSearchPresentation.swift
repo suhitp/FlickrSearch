@@ -12,4 +12,6 @@ protocol FlickrSearchPresentation: class {
     weak var view: FlickrSearchView? { get set }
     var interactor: FlickrSearchInteractor! { get set }
     var router: FlickrSearchRouter! { get set }
+    
+    func searchFlickrImages(withText text: String)
 }

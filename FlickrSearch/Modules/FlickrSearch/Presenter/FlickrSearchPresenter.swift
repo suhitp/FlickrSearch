@@ -12,4 +12,10 @@ class FlickrSearchPresenter: FlickrSearchPresentation {
     weak var view: FlickrSearchView?
     var interactor: FlickrSearchInteractor!
     var router: FlickrSearchRouter!
+    
+    var pageNum = 0
+    
+    func searchFlickrImages(withText text: String) {
+        interactor.loadFlickrPhotos(forSearchText: text, pageNum: pageNum)
+    }
 }

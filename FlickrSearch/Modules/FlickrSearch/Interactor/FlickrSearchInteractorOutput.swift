@@ -10,4 +10,6 @@ import UIKit
 
 protocol FlickrSearchInteractorOutput: class {
     weak var output: FlickrSearchPresentation? { get set }
+    
+    func loadFlickrPhotos(forSearchText text: String, pageNum: Int)
 }
