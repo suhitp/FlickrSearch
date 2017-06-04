@@ -5,6 +5,22 @@
    <BuildAction
       parallelizeBuildables = "YES"
       buildImplicitDependencies = "YES">
+      <BuildActionEntries>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "562413631EE3E08400CE4FF5"
+               BuildableName = "FlickrSearch.app"
+               BlueprintName = "FlickrSearch"
+               ReferencedContainer = "container:FlickrSearch.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+      </BuildActionEntries>
    </BuildAction>
    <TestAction
       buildConfiguration = "Debug"
@@ -12,7 +28,36 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "562413771EE3E08400CE4FF5"
+               BuildableName = "FlickrSearchTests.xctest"
+               BlueprintName = "FlickrSearchTests"
+               ReferencedContainer = "container:FlickrSearch.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "562413821EE3E08400CE4FF5"
+               BuildableName = "FlickrSearchUITests.xctest"
+               BlueprintName = "FlickrSearchUITests"
+               ReferencedContainer = "container:FlickrSearch.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "562413631EE3E08400CE4FF5"
+            BuildableName = "FlickrSearch.app"
+            BlueprintName = "FlickrSearch"
+            ReferencedContainer = "container:FlickrSearch.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
       <AdditionalOptions>
       </AdditionalOptions>
    </TestAction>
@@ -26,6 +71,16 @@
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
       allowLocationSimulation = "YES">
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "562413631EE3E08400CE4FF5"
+            BuildableName = "FlickrSearch.app"
+            BlueprintName = "FlickrSearch"
+            ReferencedContainer = "container:FlickrSearch.xcodeproj">
+         </BuildableReference>
+      </BuildableProductRunnable>
       <AdditionalOptions>
       </AdditionalOptions>
    </LaunchAction>
@@ -35,6 +90,16 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "562413631EE3E08400CE4FF5"
+            BuildableName = "FlickrSearch.app"
+            BlueprintName = "FlickrSearch"
+            ReferencedContainer = "container:FlickrSearch.xcodeproj">
+         </BuildableReference>
+      </BuildableProductRunnable>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">
