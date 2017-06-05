@@ -14,4 +14,6 @@ protocol FlickrSearchPresentation: class {
     var router: FlickrSearchRouter! { get set }
     
     func searchFlickrImages(withText text: String)
+    func onFlickSearchSuccess(_ flickrPhotos: FlickrPhotos)
+    func onFlickSearchError(_ error: Error)
 }

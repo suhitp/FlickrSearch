@@ -10,8 +10,13 @@ import UIKit
 
 final class FlickrSearchViewController: UIViewController, FlickrSearchView {
     
+    
     var presenter: FlickrSearchPresentation!
     let cellReuseIdentifier = "FlickrImageCell"
+    
+    var viewModel: FlickrImageListViewModel?
+    
+    @IBOutlet weak var collectionView: UICollectionView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,17 +25,25 @@ final class FlickrSearchViewController: UIViewController, FlickrSearchView {
         presenter.searchFlickrImages(withText: "kitten")
     }
     
+    func displayFlickrImageList(_  viewModel: FlickrImageListViewModel) {
+        self.viewModel = viewModel
+        collectionView.reloadData()
+    }
 }
 
-
+//
 extension FlickrSearchViewController: UICollectionViewDataSource, UICollectionViewDelegate {
     
     public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 50
+        guard let viewModel = viewModel else { return 0 }
+        return viewModel.photos.count
     }
     
     public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        return collectionView.dequeueReusableCell(withReuseIdentifier: cellReuseIdentifier, for: indexPath)
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellReuseIdentifier, for: indexPath) as! FlickrImageCell
+        return cell
     }
     
 }
+
+

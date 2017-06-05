@@ -10,4 +10,6 @@ import Foundation
 
 protocol FlickrSearchView: class {
     var presenter: FlickrSearchPresentation! { get set }
+    
+    func displayFlickrImageList(_  viewModel: FlickrImageListViewModel)
 }

@@ -15,8 +15,8 @@ import ObjectMapper
 
 final class Networking {
     
-    class func request(_ target: FlickrSearchAPI) -> Observable<[FlickrPhoto]> {
-        return Observable<[FlickrPhoto]>.create { (observer) -> Disposable in
+    class func request(_ target: FlickrSearchAPI) -> Observable<FlickrPhotos> {
+        return Observable<FlickrPhotos>.create { (observer) -> Disposable in
             let cancellableRequest = self.defaultProvider.request(target, completion: { (result) in
             switch result {
             case .success(let response):
@@ -25,7 +25,7 @@ final class Networking {
                     let jsonData = try response.filterSuccessfulStatusCodes()
                     let JSON = try jsonData.mapJSON() as! [String: Any]
                     let flickrPhotos = try Mapper<FlickrAPIResponse>().map(JSON: JSON)
-                    observer.onNext(flickrPhotos.photos.photo)
+                    observer.onNext(flickrPhotos.photos)
                     observer.onCompleted()
                 } catch {
                     observer.onError(error)

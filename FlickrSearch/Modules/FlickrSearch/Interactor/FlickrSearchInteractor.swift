@@ -14,15 +14,15 @@ class FlickrSearchInteractor: FlickrSearchInteractorOutput {
     weak var output: FlickrSearchPresentation?
     let disposeBag = DisposeBag()
     
-    func loadFlickrPhotos(forSearchText text: String, pageNum: Int)  {
+    func loadFlickrPhotos(forSearchText text: String, pageNum: Int) {
        
-        Networking.request(.images(searchText: text, pageNum: pageNum))
+       Networking.request(.images(searchText: text, pageNum: pageNum))
             .subscribeOn(ConcurrentDispatchQueueScheduler(qos: .default))
-            .observeOn(MainScheduler.instance)
-            .subscribe(onNext: { (photos) in
-                print(photos)
-        }, onError: { (error) in
-            print(error.localizedDescription)
-        }).addDisposableTo(disposeBag)
+            .observeOn(ConcurrentDispatchQueueScheduler(qos: .default))
+            .subscribe(onNext: { (flickrPhotos: FlickrPhotos) in
+                self.output?.onFlickSearchSuccess(flickrPhotos)
+            }, onError: { (error) in
+               self.output?.onFlickSearchError(error)
+            }).addDisposableTo(disposeBag)
     }
 }

@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import RxSwift
+import Foundation
 
 class FlickrSearchPresenter: FlickrSearchPresentation {
     weak var view: FlickrSearchView?
@@ -14,8 +16,57 @@ class FlickrSearchPresenter: FlickrSearchPresentation {
     var router: FlickrSearchRouter!
     
     var pageNum = 0
+    var flickrImageListViewModel = FlickrImageListViewModel()
     
     func searchFlickrImages(withText text: String) {
         interactor.loadFlickrPhotos(forSearchText: text, pageNum: pageNum)
     }
+    
+    func onFlickSearchSuccess(_ flickrPhotos: FlickrPhotos) {
+        print(flickrPhotos.photo)
+        if flickrImageListViewModel.total == 0 {
+            flickrImageListViewModel = FlickrImageListViewModel(photos: buildViewModel(flickrPhotos.photo), total: Int(flickrPhotos.total)!)
+        } else {
+            flickrImageListViewModel.photos += buildViewModel(flickrPhotos.photo)
+        }
+        view?.displayFlickrImageList(flickrImageListViewModel)
+    }
+    
+    func onFlickSearchError(_ error: Error) {
+        print(error.localizedDescription)
+    }
 }
+
+extension FlickrSearchPresenter {
+    
+    fileprivate func buildViewModel(_ photos: [FlickrPhoto]) -> [FlickerPhotoViewModel] {
+        let photoViewModel: [FlickerPhotoViewModel] = photos.map { (photo) in
+            let url = "https://farm"
+                .appending(String(photo.farm))
+                .appending(".static.flickr.com/")
+                .appending(photo.server)
+                .appending(photo.id)
+                .appending("_")
+                .appending(photo.secret)
+                .appending(".jpeg")
+            return FlickerPhotoViewModel(imageUrl: URL(string: url)!)
+        }
+        return photoViewModel
+    }
+}
+
+
+struct FlickrImageListViewModel {
+    var photos: [FlickerPhotoViewModel] = []
+    var total: Int = 0
+}
+
+struct FlickerPhotoViewModel {
+    let imageUrl: URL
+}
+
+/*
+ https://farm{farm}.static.flickr.com/{server}/{id}_{secret}.jpg
+ So, using our example from before, the URL would be
+ https://farm1.static.flickr.com/578/23451156376_8983a8ebc7.jpg
+ */
