@@ -18,6 +18,7 @@ final class FlickrSearchViewController: UIViewController, FlickrSearchView {
     
     @IBOutlet weak var collectionView: UICollectionView!
     
+    //MARK: Lifecyle
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "Flickr Search"
@@ -25,13 +26,14 @@ final class FlickrSearchViewController: UIViewController, FlickrSearchView {
         presenter.searchFlickrImages(withText: "kitten")
     }
     
+    //MARK: FlickrSearchView
     func displayFlickrImageList(_  viewModel: FlickrImageListViewModel) {
         self.viewModel = viewModel
         collectionView.reloadData()
     }
 }
 
-//
+//MARK: UICollectionViewDataSource and Delegate
 extension FlickrSearchViewController: UICollectionViewDataSource, UICollectionViewDelegate {
     
     public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
