@@ -22,10 +22,10 @@ final class Networking {
             case .success(let response):
                     
                 do {
-                    let json = try response.filterSuccessfulStatusCodes()
-                    let photos = try json.mapJSON()
-                    print(photos)
-                    observer.onNext([])
+                    let jsonData = try response.filterSuccessfulStatusCodes()
+                    let JSON = try jsonData.mapJSON() as! [String: Any]
+                    let flickrPhotos = try Mapper<FlickrAPIResponse>().map(JSON: JSON)
+                    observer.onNext(flickrPhotos.photos.photo)
                     observer.onCompleted()
                 } catch {
                     observer.onError(error)
@@ -61,17 +61,3 @@ final class Networking {
     
 }
 
-
-struct FlickrPhoto {
-    
-    let title: String
-    let url: NSURL
-    let identifier: String
-    
-    init (title: String, url: NSURL, identifier: String) {
-        self.title = title
-        self.url = url
-        self.identifier = identifier
-    }
-    
-}

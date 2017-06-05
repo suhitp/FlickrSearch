@@ -20,7 +20,7 @@ class FlickrSearchInteractor: FlickrSearchInteractorOutput {
             .subscribeOn(ConcurrentDispatchQueueScheduler(qos: .default))
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { (photos) in
-           
+                print(photos)
         }, onError: { (error) in
             print(error.localizedDescription)
         }).addDisposableTo(disposeBag)

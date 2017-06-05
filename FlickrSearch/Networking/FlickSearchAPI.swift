@@ -28,7 +28,7 @@ extension FlickrSearchAPI: TargetType {
         public var path: String {
             switch self {
             case .images(let searchText, let pageNum):
-                return "/services/rest/?method=flickr.photos.search&api_key=\(apiKey)&format=json&nojsoncallback=1&safe_search=1&text=\(searchText)&page=\(pageNum)"
+                return "/services/rest/?method=flickr.photos.search&api_key=\(apiKey)&format=json&nojsoncallback=1&safe_search=1&text=\(searchText)&page=\(pageNum)&per_page=25"
             }
         }
             
