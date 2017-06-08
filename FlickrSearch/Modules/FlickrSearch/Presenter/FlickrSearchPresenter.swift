@@ -26,9 +26,17 @@ class FlickrSearchPresenter: FlickrSearchPresentation {
         guard total_items < flickrImageListViewModel.total else {
             return
         }
+        
         view?.changeState(.loading)
         pageNum += 1
         interactor.loadFlickrPhotos(forSearchText: text, pageNum: pageNum)
+    }
+    
+    func clearSearchData() {
+        total_items = -1
+        flickrImageListViewModel.photos.removeAll()
+        flickrImageListViewModel.total = 0
+        pageNum = -1
     }
     
     func onFlickSearchSuccess(_ flickrPhotos: FlickrPhotos) {

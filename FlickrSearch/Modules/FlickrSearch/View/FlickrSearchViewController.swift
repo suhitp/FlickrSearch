@@ -60,15 +60,17 @@ final class FlickrSearchViewController: UIViewController, FlickrSearchView {
     //MARK: configureSearchController
     
     private func configureSearchController() {
-        let searchResultsVC = SearchResultsBuilder().buildSearchResultsModule()
+        let searchResultsVC = SearchResultsBuilder().buildSearchResultsModule() as! SearchResultsViewController
         searchController = UISearchController(searchResultsController: searchResultsVC)
         searchController.dimsBackgroundDuringPresentation = true
-        searchController.searchResultsUpdater = searchResultsVC as? UISearchResultsUpdating
+        searchController.searchResultsUpdater = searchResultsVC
         searchController.searchBar.placeholder = "Search flickr for your favourite images"
         searchController.searchBar.enablesReturnKeyAutomatically = false
         searchController.searchBar.tintColor = .black
         searchController.searchBar.barStyle = .default
         definesPresentationContext = true
+        searchResultsVC.searchDelegate = self
+        searchController.searchBar.delegate = searchResultsVC
         collectionView?.addSubview(searchController.searchBar)
     }
     
@@ -120,6 +122,26 @@ final class FlickrSearchViewController: UIViewController, FlickrSearchView {
 
 }
 
+//MARK: SearchResultSelectionProtocol
+extension FlickrSearchViewController: SearchResultSelectionProtocol {
+    
+    func didSelectSearchText(_ text: String) {
+        searchController.isActive = false
+        
+        guard !text.isEmpty else { return }
+        guard searchText != text else { return }
+        
+        searchText = text
+        viewModel = nil
+        changeState(.none)
+        collectionView.reloadData()
+        spinner.startAnimating()
+        
+        presenter.clearSearchData()
+        presenter.searchFlickrImages(withText: text)
+    }
+}
+
 
 //MARK: UICollectionViewDataSource and Delegate
 extension FlickrSearchViewController: UICollectionViewDataSource, UICollectionViewDelegate {
@@ -133,7 +155,8 @@ extension FlickrSearchViewController: UICollectionViewDataSource, UICollectionVi
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellReuseIdentifier, for: indexPath) as! FlickrImageCell
         if let viewModel = viewModel {
             let flickrPhoto = viewModel.photos[indexPath.row]
-            cell.imageView.kf.setImage(with: flickrPhoto.imageUrl, options: [.transition(.fade(0.5))])
+            let placeholder = UIImage.init(color: UIColor(white: 0, alpha: 0.5), size: cell.imageView.frame.size)
+            cell.imageView.kf.setImage(with: flickrPhoto.imageUrl, placeholder: placeholder, options: [.transition(.fade(0.5))])
         }
         return cell
     }
@@ -166,6 +189,6 @@ extension FlickrSearchViewController: UICollectionViewDataSource, UICollectionVi
             assert(false, "Unexpected element kind")
         }
     }
-    
 }
+
 

@@ -13,6 +13,7 @@ protocol FlickrSearchPresentation: class {
     var interactor: FlickrSearchInteractor! { get set }
     var router: FlickrSearchRouter! { get set }
     
+    func clearSearchData()
     func searchFlickrImages(withText text: String)
     func onFlickSearchSuccess(_ flickrPhotos: FlickrPhotos)
     func onFlickSearchError(_ error: Error)
