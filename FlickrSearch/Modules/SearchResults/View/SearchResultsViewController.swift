@@ -83,6 +83,7 @@ class SearchResultsViewController: UITableViewController, UISearchResultsUpdatin
         }
     
         if filteredArray.isEmpty {
+            shouldShowFilteredResults = false
             tableView.reloadData()
             return
         }
