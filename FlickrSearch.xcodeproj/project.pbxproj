@@ -182,8 +182,8 @@
 		562413951EE3E17C00CE4FF5 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
-				564025051EE8822300938CFE /* SearchResults */,
 				562413A21EE3E34700CE4FF5 /* FlickrSearch */,
+				564025051EE8822300938CFE /* SearchResults */,
 			);
 			name = Modules;
 			sourceTree = "<group>";

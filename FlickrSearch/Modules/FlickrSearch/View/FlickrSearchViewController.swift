@@ -31,7 +31,7 @@ final class FlickrSearchViewController: UIViewController, FlickrSearchView {
     
     public var currentState: ViewState = .none
     
-    var searchText = "uber"
+    var searchText = "nature"
     
     //MARK: Lifecyle
     override func viewDidLoad() {
@@ -54,6 +54,7 @@ final class FlickrSearchViewController: UIViewController, FlickrSearchView {
     private func configureCollectionView() {
         let layout = collectionView.collectionViewLayout as! UICollectionViewFlowLayout
         layout.sectionInset = UIEdgeInsetsMake(44, 0, 0, 0)
+        layout.itemSize = CGSize(width: view.frame.size.width/3 - 0.5, height: view.frame.size.width/2)
     }
     
     //MARK: configureSearchController
