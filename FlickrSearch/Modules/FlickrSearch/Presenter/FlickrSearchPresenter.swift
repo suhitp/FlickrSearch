@@ -43,7 +43,7 @@ class FlickrSearchPresenter: FlickrSearchPresentation {
     
     func onFlickSearchError(_ error: Error) {
         pageNum -= 1
-        view?.changeState(.error)
+        view?.showFlickrSearchError(error)
     }
 }
 
