@@ -15,25 +15,35 @@ class FlickrSearchPresenter: FlickrSearchPresentation {
     var interactor: FlickrSearchInteractor!
     var router: FlickrSearchRouter!
     
-    var pageNum = 0
+    var pageNum = -1
     var flickrImageListViewModel = FlickrImageListViewModel()
+    var total_items = -1
     
     func searchFlickrImages(withText text: String) {
+        guard view?.currentState != .loading else {
+            return
+        }
+        guard total_items < flickrImageListViewModel.total else {
+            return
+        }
+        view?.changeState(.loading)
+        pageNum += 1
         interactor.loadFlickrPhotos(forSearchText: text, pageNum: pageNum)
     }
     
     func onFlickSearchSuccess(_ flickrPhotos: FlickrPhotos) {
-        print(flickrPhotos.photo)
         if flickrImageListViewModel.total == 0 {
             flickrImageListViewModel = FlickrImageListViewModel(photos: buildViewModel(flickrPhotos.photo), total: Int(flickrPhotos.total)!)
         } else {
             flickrImageListViewModel.photos += buildViewModel(flickrPhotos.photo)
         }
+        total_items += flickrPhotos.photo.count
         view?.displayFlickrImageList(flickrImageListViewModel)
     }
     
     func onFlickSearchError(_ error: Error) {
-        print(error.localizedDescription)
+        pageNum -= 1
+        view?.changeState(.error)
     }
 }
 
@@ -41,14 +51,7 @@ extension FlickrSearchPresenter {
     
     fileprivate func buildViewModel(_ photos: [FlickrPhoto]) -> [FlickerPhotoViewModel] {
         let photoViewModel: [FlickerPhotoViewModel] = photos.map { (photo) in
-            let url = "https://farm"
-                .appending(String(photo.farm))
-                .appending(".static.flickr.com/")
-                .appending(photo.server)
-                .appending(photo.id)
-                .appending("_")
-                .appending(photo.secret)
-                .appending(".jpeg")
+            let url = "https://farm\(photo.farm).static.flickr.com/\(photo.server)/\(photo.id)_\(photo.secret).jpg"
             return FlickerPhotoViewModel(imageUrl: URL(string: url)!)
         }
         return photoViewModel

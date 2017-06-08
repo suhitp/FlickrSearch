@@ -10,6 +10,7 @@ import Foundation
 
 protocol FlickrSearchView: class {
     var presenter: FlickrSearchPresentation! { get set }
-    
+    var currentState: ViewState { get set }
     func displayFlickrImageList(_  viewModel: FlickrImageListViewModel)
+    func changeState(_ state: ViewState)
 }
