@@ -17,7 +17,7 @@ extension FlickrSearchAPI: TargetType {
     
         public var baseURL: URL { return URL(string: "https://api.flickr.com")! }
     
-        private var apiKey: String { return "3e7cc266ae2b0e0d78e279ce8e361736" }
+        private var apiKey: String { return "f9890551af4b01eccd3dbfdcef155170" }
     
         public var method: Moya.Method {
             switch self {
@@ -27,22 +27,30 @@ extension FlickrSearchAPI: TargetType {
     
         public var path: String {
             switch self {
-            case .images(let searchText, let pageNum):
-                return "/services/rest/?method=flickr.photos.search&api_key=\(apiKey)&format=json&nojsoncallback=1&safe_search=1&text=\(searchText)&page=\(pageNum)&per_page=25"
+            case .images(_, _):
+                return "/services/rest/"
+                //return "/services/rest/?method=flickr.photos.search&api_key=\(apiKey)&format=json&nojsoncallback=1&safe_search=1&text=\(searchText)&page=\(pageNum)&per_page=25"
             }
         }
             
         public var parameters: [String: Any]? {
             switch self {
-            case .images(_, _):
-                return nil
+            case .images(let searchText, let pageNum):
+                return ["method": "flickr.photos.search",
+                        "api_key": apiKey,
+                        "format": "json",
+                        "nojsoncallback": 1,
+                        "safe_search": 1,
+                        "text": searchText,
+                        "page": pageNum,
+                        "per_page": 25]
             }
         }
             
         public var parameterEncoding: ParameterEncoding {
             switch self {
             case .images(_, _):
-                return JSONEncoding.default// Send parameters in URL
+                return URLEncoding.default// Send parameters in URL
             }
         }
             
