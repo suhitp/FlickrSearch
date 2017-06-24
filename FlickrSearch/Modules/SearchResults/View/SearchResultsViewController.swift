@@ -29,7 +29,7 @@ class SearchResultsViewController: UITableViewController, UISearchResultsUpdatin
     }
     
     private func getSearchResultData() -> [String] {
-        return UGDefaults.flickrSearchData 
+        return DataManager.flickrSearchData
     }
     
     //MARK: UITableviewDataSource
@@ -60,7 +60,7 @@ class SearchResultsViewController: UITableViewController, UISearchResultsUpdatin
         }
         
         if text.isEmpty { return }
-        UGDefaults.saveSearchText(text)
+        DataManager.saveSearchText(text)
         searchDelegate?.didSelectSearchText(text)
     }
     
@@ -111,7 +111,7 @@ extension SearchResultsViewController: UISearchBarDelegate {
             return
         }
         searchBar.resignFirstResponder()
-        UGDefaults.saveSearchText(text)
+        DataManager.saveSearchText(text)
         searchDelegate?.didSelectSearchText(text)
     }
 }

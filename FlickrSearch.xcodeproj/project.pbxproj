@@ -158,11 +158,11 @@
 		562413661EE3E08400CE4FF5 /* FlickrSearch */ = {
 			isa = PBXGroup;
 			children = (
+				562413961EE3E18900CE4FF5 /* Application */,
+				562413951EE3E17C00CE4FF5 /* Modules */,
 				564F91DF1EE95222007C3A7B /* Extensions */,
 				564F91DA1EE94372007C3A7B /* Util */,
 				56A1BD8D1EE4812D003FE54C /* Model */,
-				562413961EE3E18900CE4FF5 /* Application */,
-				562413951EE3E17C00CE4FF5 /* Modules */,
 				562413B61EE4017200CE4FF5 /* Networking */,
 				562413971EE3E19C00CE4FF5 /* Supporting Files */,
 			);

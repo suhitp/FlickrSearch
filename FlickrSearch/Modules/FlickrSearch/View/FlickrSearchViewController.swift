@@ -54,7 +54,7 @@ final class FlickrSearchViewController: UIViewController, FlickrSearchView {
     private func configureCollectionView() {
         let layout = collectionView.collectionViewLayout as! UICollectionViewFlowLayout
         layout.sectionInset = UIEdgeInsetsMake(44, 0, 0, 0)
-        layout.itemSize = CGSize(width: view.frame.size.width/3 - 0.5, height: view.frame.size.width/2)
+        layout.itemSize = CGSize(width: view.frame.size.width/2 - 0.25, height: 250.0)
     }
     
     //MARK: configureSearchController
@@ -155,7 +155,7 @@ extension FlickrSearchViewController: UICollectionViewDataSource, UICollectionVi
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellReuseIdentifier, for: indexPath) as! FlickrImageCell
         if let viewModel = viewModel {
             let flickrPhoto = viewModel.photos[indexPath.row]
-            let placeholder = UIImage.init(color: UIColor(white: 0, alpha: 0.5), size: cell.imageView.frame.size)
+            let placeholder = UIImage.init(color: .black, size: cell.imageView.frame.size)
             cell.imageView.kf.setImage(with: flickrPhoto.imageUrl, placeholder: placeholder, options: [.transition(.fade(0.5))])
         }
         return cell

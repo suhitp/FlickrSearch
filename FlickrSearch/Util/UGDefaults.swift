@@ -8,7 +8,7 @@
 
 import UIKit
 
-struct UGDefaults {
+struct DataManager {
     
     private static let userDefault = UserDefaults.standard
     

@@ -15,7 +15,7 @@ class FlickrSearchPresenter: FlickrSearchPresentation {
     var interactor: FlickrSearchInteractor!
     var router: FlickrSearchRouter!
     
-    var pageNum = -1
+    var pageNum = 0
     var flickrImageListViewModel = FlickrImageListViewModel()
     var total_items = -1
     
@@ -36,7 +36,7 @@ class FlickrSearchPresenter: FlickrSearchPresentation {
         total_items = -1
         flickrImageListViewModel.photos.removeAll()
         flickrImageListViewModel.total = 0
-        pageNum = -1
+        pageNum = 0
     }
     
     func onFlickSearchSuccess(_ flickrPhotos: FlickrPhotos) {
